@@ -21,5 +21,5 @@ COPY train.py /app/
 COPY predict.py /app/
 
 # Comando por defecto al ejecutar el contenedor
-CMD ["python", "train.py","--data_file=data/train_data.csv","--model_file=modelo_final.pkl"]
+CMD ["sh", "-c", "python train.py --data_file=data/train_data.csv --model_file=modelo_final.pkl && python predict.py --input_file=data/test_data.csv --predictions_file=data/prediction_file.csv --model_file=modelo_final.pkl"]
 
