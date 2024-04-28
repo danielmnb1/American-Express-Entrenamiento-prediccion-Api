@@ -16,10 +16,15 @@ RUN pip install --no-cache-dir -r biblioteca.txt
 # Copia el script "train.py" al directorio "/app" en el contenedor
 COPY train.py /app/
 
-
 # Copia el script "predict.py" al directorio "/app" en el contenedor
 COPY predict.py /app/
 
+# Copia el script "predict.py" al directorio "/app" en el contenedor
+COPY apirest.py /app/
+
+# Expone el puerto 3000
+EXPOSE 3000
+
 # Comando por defecto al ejecutar el contenedor
-CMD ["sh", "-c", "python train.py --data_file=data/train_data.csv --model_file=modelo_final.pkl && python predict.py --input_file=data/test_data.csv --predictions_file=data/prediction_file.csv --model_file=modelo_final.pkl"]
+CMD ["sh", "-c", "python train.py --data_file=data/train_data.csv --model_file=modelo_final.pkl && python predict.py --input_file=data/test_data.csv --predictions_file=data/prediction_file.csv --model_file=modelo_final.pkl && python apirest.py"]
 
